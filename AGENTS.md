@@ -2,10 +2,12 @@
 This file is injected into `~/.config/opencode/AGENTS.md` by the Dockerfile and applies to all opencode sessions running inside this container.
 
 ## Docker & Environment
-- This is a containerized opencode environment. No systemd, no docker-in-docker by default.
-- The home directory is `/root` (override via `--build-arg USER_HOME=<path>`).
-- Tools like `gh`, `git`, `docker`, `node`, `python`, and standard Unix utilities are available.
-- Global npm/pip/cargo packages belong under `/root` (or `${USER_HOME}`).
+- This is a containerized, web-hosted opencode environment. The web UI runs on port 3000.
+- No systemd, no docker-in-docker by default.
+- The home directory is `/home/ubuntu` (override via `--build-arg USER_HOME=<path>`).
+- Tools like `gh`, `git`, `node`, `python`, and standard Unix utilities are available.
+- Global npm/pip/cargo packages belong under `/home/ubuntu` (or `${USER_HOME}`).
+- Auth is configured via `DEEPSEEK_API_KEY` environment variable at container startup.
 
 ## General Guidelines
 - Use concise, direct communication. Avoid unnecessary preamble or postamble.
