@@ -9,12 +9,13 @@ printf '{\n  "deepseek": {\n    "type": "api",\n    "key": "%s"\n  }\n}\n' \
 gh auth setup-git
 
 GH_USER=$(gh api user --jq '.login' 2>/dev/null || echo "unknown")
-cat >> ~/.config/opencode/AGENTS.md <<EOF
+cat ~/.config/opencode/AGENTS.md - <<EOF > ~/.config/opencode/AGENTS.md.tmp
 
 ## GitHub Identity
 - Authenticated to GitHub as: @${GH_USER}
 - Git remote convention: \`origin\` points to the repo being worked on
 - Use \`gh\` CLI for all GitHub operations
 EOF
+mv ~/.config/opencode/AGENTS.md.tmp ~/.config/opencode/AGENTS.md
 
 exec opencode web --hostname 0.0.0.0 --port 3000
