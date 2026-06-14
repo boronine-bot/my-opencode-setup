@@ -3,8 +3,11 @@ set -e
 
 mkdir -p ~/.local/share/opencode
 
-printf '{\n  "deepseek": {\n    "type": "api",\n    "key": "%s"\n  }\n}\n' \
-  "$DEEPSEEK_API_KEY" > ~/.local/share/opencode/auth.json
+printf '{\n  "deepseek": {\n    "type": "api",\n    "key": "%s"\n  }' "$DEEPSEEK_API_KEY" > ~/.local/share/opencode/auth.json
+if [ -n "$MOONSHOT_API_KEY" ]; then
+  printf ',\n  "moonshotai": {\n    "type": "api",\n    "key": "%s"\n  }' "$MOONSHOT_API_KEY" >> ~/.local/share/opencode/auth.json
+fi
+printf '\n}\n' >> ~/.local/share/opencode/auth.json
 
 gh auth setup-git
 
