@@ -17,3 +17,5 @@ Dockerized OpenCode server environment.
 
 3. Deploy — Traefik auto-provisions SSL via Let's Encrypt
 4. Access at `https://$DOMAIN`
+
+<!-- dummy PR change -->
